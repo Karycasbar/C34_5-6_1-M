@@ -13,7 +13,7 @@ var boatSpritedata, boatSpritesheet;
 
 var brokenBoatAnimation = [];
 var brokenBoatSpritedata, brokenBoatSpritesheet;
-var backgroundMusic, waterSound, pirateLaughSound, cannonExplosion;
+
 
 var isGameOver = false;
 var isLaughing = false;
@@ -58,10 +58,7 @@ function setup() {
 function draw() {
   background(189);
   image(backgroundImg, 0, 0, width, height);
-  if(!backgroundMusic.isPlaying()){
-    backgroundMusic.play();
-    backgroundMusic.setVolume(0.1);
-  }
+
 
   for (var i = 0; i< balls.length; i++){
     showCannonBalls(balls[i], i);
@@ -99,7 +96,6 @@ function showCannonBalls(ball, index){
   if(ball.body.position.x >= width || ball.body.position.y >= height - 50){
     Matter.World.remove(world, ball.body);
     balls.splice(index, 1);
-    waterSound.play();
   }
 }
 
@@ -114,7 +110,6 @@ function keyPressed(){
 
 function keyReleased() {
   if (keyCode === DOWN_ARROW) {
-    cannonExplosion.play();
     //cannonBall.shoot()
     balls[balls.length - 1].shoot();
   }
